@@ -5,15 +5,28 @@ import static org.hamcrest.CoreMatchers.is;
 
 import java.io.IOException;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class CalcSumTest {
 	
-	@Test public void sumOfNumber() throws NumberFormatException, IOException {
-		Calculator calculatror = new Calculator();
-		int sum = calculatror.calcSum(
-				getClass().getResource("numbers.txt").getPath()
-				);
-		assertThat(sum, is(10)); 
+	Calculator calculator;
+	String numFilepath;
+	
+	@Before public void setup(){
+		this.calculator = new Calculator();
+		this.numFilepath = getClass().getResource("numbers.txt").getPath();
+	}
+	
+	@Test public void sumOfNumbers() throws NumberFormatException, IOException {
+		assertThat(calculator.calcSum(numFilepath), is(10)); 
+	}
+	
+	@Test public void multiplyOfNumbers() throws IOException {
+		assertThat(calculator.calcMultiply(this.numFilepath), is(24));
+	}
+	
+	@Test public void concatenateString() throws IOException {
+		assertThat(calculator.concatenate(numFilepath), is("1234"));
 	}
 }

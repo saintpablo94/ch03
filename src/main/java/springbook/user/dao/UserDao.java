@@ -26,7 +26,6 @@ public class UserDao {
 		
 		this.jdbcContext.workWithStatementStrategy(
 			new StatementStrategy() {
-				@Override
 				public PreparedStatement makePreparedStatement(Connection c)
 						throws SQLException {
 					PreparedStatement ps = c
